@@ -1,0 +1,34 @@
+name: Cutter Documentation
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Build docs
+      run: make quick
+    - name: Checkout target
+      uses: actions/checkout@v2
+      with:
+        repository: 'karliss/github-integration-test'
+        path: 'deploy-checkout'
+    - name: Copy files
+      run: |
+        rm -r deploy-checkout/docs/*
+        cp -r build/html/* deploy-checkout/docs/
+    - name: deploy
+      uses: EndBug/add-and-commit@va988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4.4.0
+      with:
+        cwd: deploy-checkout
+        message: ${{ "Update docs from " + github.repository +  "@" + github.sha }}
+        add: docs
