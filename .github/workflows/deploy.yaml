@@ -27,7 +27,7 @@ jobs:
         rm -r deploy-checkout/docs/*
         cp -r build/html/* deploy-checkout/docs/
     - name: deploy
-      uses: EndBug/add-and-commit@va988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4.4.0
+      uses: EndBug/add-and-commit@a988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4.4.0
       with:
         cwd: deploy-checkout
         message: ${{ format('Upate docs from {0}@{1}', github.repository, github.sha) }}
