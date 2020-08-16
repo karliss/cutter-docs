@@ -32,3 +32,5 @@ jobs:
         cwd: deploy-checkout
         message: ${{ format('Upate docs from {0}@{1}', github.repository, github.sha) }}
         add: docs
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
