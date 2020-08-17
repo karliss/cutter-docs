@@ -22,6 +22,7 @@ jobs:
       with:
         repository: 'karliss/github-integration-test'
         path: 'deploy-checkout'
+        token: ${{ secrets.UPLOAD_TOKEN }}
     - name: Copy files
       run: |
         rm -r deploy-checkout/docs/*
