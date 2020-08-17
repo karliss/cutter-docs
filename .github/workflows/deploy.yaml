@@ -22,6 +22,7 @@ jobs:
       with:
         repository: 'karliss/github-integration-test'
         path: 'deploy-checkout'
+        ref: master
         token: ${{ secrets.UPLOAD_TOKEN }}
     - name: Copy files
       run: |
@@ -32,6 +33,8 @@ jobs:
       with:
         cwd: deploy-checkout
         message: ${{ format('Upate docs from {0}@{1}', github.repository, github.sha) }}
+        force: false
+        ref: master
         add: docs
       env:
         GITHUB_TOKEN: ${{ secrets.UPLOAD_TOKEN }}
