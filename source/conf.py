@@ -39,7 +39,6 @@ release = '1.11.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'breathe',
     'recommonmark',
     'sphinx.ext.autosectionlabel'
 ]
@@ -77,12 +76,6 @@ pygments_style = 'rainbow_dash'
 
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 2
-
-# -- Options for Breathe -----------------------------------------------------
-
-breathe_projects = { 'cutter': '../doxygen-out/xml' }
-breathe_default_project = 'cutter'
-breathe_default_members = ('members', 'undoc-members')
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -125,6 +118,8 @@ html_css_files = [
 html_sidebars = {
    '**': ['globaltoc.html', 'searchbox.html'],
 }
+
+html_copy_source = False
 
 # -- Options for HTMLHelp output ---------------------------------------------
 

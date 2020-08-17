@@ -28,6 +28,7 @@ jobs:
       run: |
         rm -r deploy-checkout/docs/*
         cp -r build/html/* deploy-checkout/docs/
+        rm deploy-checkout/docs/objects.inv
     - name: deploy
       uses: EndBug/add-and-commit@a988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4.4.0
       with:
