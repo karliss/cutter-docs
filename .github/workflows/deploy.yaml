@@ -17,13 +17,18 @@ jobs:
       run: pip install -r requirements.txt
     - name: Build docs
       run: make quick
+    - name: webfactory/ssh-agent
+      uses: webfactory/ssh-agent@ef0ce0cab8e3ad0aa0f3e1fb209b0811b68c0c51 # v0.4.0
+      with:
+        ssh-private-key: ${{ secrets.UPLOAD_SSH_KEY }}
     - name: Checkout target
       uses: actions/checkout@v2
       with:
         repository: 'karliss/github-integration-test'
         path: 'deploy-checkout'
         ref: master
-        token: ${{ secrets.UPLOAD_TOKEN }}
+        #token: ${{ secrets.UPLOAD_TOKEN }}
+    
     - name: Copy files
       run: |
         rm -r deploy-checkout/docs/*
@@ -37,5 +42,5 @@ jobs:
         force: false
         ref: master
         add: docs
-      env:
-        GITHUB_TOKEN: ${{ secrets.UPLOAD_TOKEN }}
+      #env:
+      #  GITHUB_TOKEN: ${{ secrets.UPLOAD_TOKEN }}
