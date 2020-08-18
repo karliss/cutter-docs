@@ -17,11 +17,8 @@ jobs:
       run: pip install -r requirements.txt
     - name: Build docs
       run: make quick
-    #- name: webfactory/ssh-agent
-    #  uses: webfactory/ssh-agent@ef0ce0cab8e3ad0aa0f3e1fb209b0811b68c0c51 # v0.4.0
-    #  with:
-    #    ssh-private-key: ${{ secrets.UPLOAD_SSH_KEY }}
-    - name: Checkout target
+
+    - name: Checkout deploy target
       uses: actions/checkout@v2
       with:
         repository: 'karliss/github-integration-test'
@@ -34,7 +31,7 @@ jobs:
         rm -r deploy-checkout/docs/*
         cp -r build/html/* deploy-checkout/docs/
         rm deploy-checkout/docs/objects.inv
-    - name: deploy
+    - name: Commit and push
       uses: EndBug/add-and-commit@a988073222b8bd50f3ecfca9c0ab7dfbf0d08ceb # v4.4.0
       with:
         cwd: deploy-checkout
