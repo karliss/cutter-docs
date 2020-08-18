@@ -27,6 +27,7 @@ jobs:
         repository: 'karliss/github-integration-test'
         path: 'deploy-checkout'
         ref: master
+        ssh: ${{ secrets.UPLOAD_SSH_KEY }}
         #token: ${{ secrets.UPLOAD_TOKEN }}
     
     - name: Copy files
